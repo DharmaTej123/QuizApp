@@ -92,6 +92,9 @@ function updateProgressBar() {
     const progressBar = document.getElementById("progress-bar");
     const progressPercentage = (currentQuestion / questions.length) * 100;
     progressBar.style.width = progressPercentage + "%";
+    if (currentQuestion === questions.length) {
+        progressBar.style.width = "100%";
+    }
 }
 
 function loadQuestion() {
@@ -113,15 +116,20 @@ function loadQuestion() {
         });
         answersElement.appendChild(optionElement);
     });
+    // Enable the "Next" button, even if no answer is selected for the current question
     nextButton.style.display = "block";
     nextButton.disabled = false;
 }
+// Update the "Next" button click event to display the correct answer
 nextButton.addEventListener("click", () => {
-    if (!isAnswerSelected) {
-        // If no answer is selected, disable the "Next" button
-        nextButton.disabled = true;
-        return;
-    }
+    const currentQuizQuestion = questions[currentQuestion];
+    const feedbackElement = document.createElement("p");
+    feedbackElement.classList.add("feedback");
+    feedbackElement.textContent = "The correct answer is: " + currentQuizQuestion.correctAnswer;
+    feedbackElement.style.color = "red";
+    answersElement.appendChild(feedbackElement);
+    
+
     currentQuestion++;
     if (currentQuestion < questions.length) {
         loadQuestion();
@@ -135,6 +143,7 @@ function showScore() {
     nextButton.style.display = "none";
     restartButton.style.display = "block";
     scoreElement.textContent = `Your Score: ${score} out of ${questions.length}`;
+    updateProgressBar();
 }
 
 function restartQuiz() {
