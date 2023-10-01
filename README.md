@@ -6,7 +6,7 @@ This is a simple interactive quiz application built using HTML, CSS, and JavaScr
 3. The quiz will start, and you will see the first question and answer options.
 4. Click on an answer option to select your answer.
 5. If your answer is correct, you will see a "Correct!" message. If your answer is incorrect, you will see the correct answer along with an "Incorrect" message along with the correct answer.
-6. If you want to move to the next question without selecting an answer, you can do so.
+6. If you want to move to the next question without selecting an answer, you can do so by clicking the "Next" button.
 7. Repeat steps 4-6 for each question.
 8. After answering all questions, you will see your final score displayed on the screen.
 9. To restart the quiz, click the "Restart" button.
